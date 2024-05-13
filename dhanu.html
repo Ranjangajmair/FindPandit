@@ -1,0 +1,374 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+    <head>
+        <!-- meta data -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!--font-family-->
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        
+        <!-- title of site -->
+        <title>SanskritUniversity-DhanuRashi</title>
+
+        <!-- For favicon png -->
+		<link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
+       
+        <!--font-awesome.min.css-->
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+        <!--linear icon css-->
+		<link rel="stylesheet" href="assets/css/linearicons.css">
+
+		<!--animate.css-->
+        <link rel="stylesheet" href="assets/css/animate.css">
+
+		<!--flaticon.css-->
+        <link rel="stylesheet" href="assets/css/flaticon.css">
+
+		<!--slick.css-->
+        <link rel="stylesheet" href="assets/css/slick.css">
+		<link rel="stylesheet" href="assets/css/slick-theme.css">
+		
+        <!--bootstrap.min.css-->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		
+		<!-- bootsnav -->
+		<link rel="stylesheet" href="assets/css/bootsnav.css" >	
+        
+        <!--style.css-->
+        <link rel="stylesheet" href="assets/css/style.css">
+        
+        <!--responsive.css-->
+        <link rel="stylesheet" href="assets/css/responsive.css">
+        
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		
+        <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+	<style>
+		.heading {
+			padding: 20px;
+			color: black;
+			font-size: 28px;
+			font-weight: bolder;
+			margin-left: 10vw;
+		}
+		.mainContainer {
+			border-radius: 5px;
+			background-color: rgb(167, 70, 70);
+			padding: 15px;
+			margin-left: 10vw;
+			margin-right: 10vw;
+		}
+
+		.rasifalDiv {
+			display: flex;
+			flex-direction: column;
+			gap: 40px;
+		}
+		.rasiDiv {
+			border-radius: 5px;
+			background-color: rgb(211, 205, 87);
+			display: flex;
+			flex-direction: column;
+
+		}
+		.rasiName {
+			color: black;
+			padding: 5px;
+			display: flex;
+			justify-content: center;
+			font-size: 30px;
+			font-weight: bold;
+		}
+		.nameWord {
+			font-size: 20px;
+			color: rgb(14, 13, 13);
+			display: flex;
+			justify-content: center;
+		}
+		.rasiText {
+			border-radius: 5px;
+			background-color: rgb(196, 192, 192);
+			padding: 30px;
+			color: black;
+			font-size: 20px;
+		}
+
+		.mainImage {
+			display: flex;
+			justify-content: center;
+			padding: 10px;
+
+		}
+
+		img {
+			height: 100px;
+			width: 100px;
+		}
+
+
+		@media screen and (max-width: 766px) {
+
+			.heading {
+			padding: 10px;
+			color: black;
+			font-size: 20px;
+			font-weight: bolder;
+			margin-left: 5px;
+			}
+
+			.mainContainer {
+			border-radius: 5px;
+			background-color: rgb(167, 70, 70);
+			padding: 10px;
+			margin-left: 5px;
+			margin-right: 5px;
+			}
+
+			.rasifalDiv {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+		}
+			.rasiName {
+			color: black;
+			padding: 5px;
+			display: flex;
+			justify-content: center;
+			font-size: 20px;
+			font-weight: bold;
+		}
+		.nameWord {
+			font-size: 15px;
+			color: rgb(14, 13, 13);
+			display: flex;
+			justify-content: center;
+		}
+		.rasiText {
+			border-radius: 5px;
+			background-color: rgb(196, 192, 192);
+			padding: 15px;
+			color: black;
+			font-size: 15px;
+		}
+		img {
+			height: 50px;
+			width: 50px;
+		}
+
+		}
+
+		@media screen and (max-width: 1200px){
+      .container {
+        width: 90%;
+      }
+    }
+
+	.navbar-brand-footer {
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .navbar-brand-phno {
+      font-size: 15px;
+      display: flex;
+      justify-content: center;
+
+    }
+    .navbar-brand-gmail {
+      font-size: 15px;
+      display: flex;
+      justify-content: center;
+
+    }
+		
+	</style>
+	
+	<body>
+		<!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+		<!-- top-area Start -->
+		<section class="top-area">
+			<div class="header-area">
+				<!-- Start Navigation -->
+			    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
+
+			        <div class="container">
+
+			            <!-- Start Header Navigation -->
+			            <div class="navbar-header">
+			                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+			                    <i class="fa fa-bars"></i>
+			                </button>
+			                <a class="navbar-brand" href="index.html">Sanskrit<span>University</span></a>
+
+			            </div><!--/.navbar-header-->
+			            <!-- End Header Navigation -->
+
+			            <!-- Collect the nav links, forms, and other content for toggling -->
+			            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+			                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+			                    <li><a href="index.html">Find Pandit</a></li>
+			                    <li><a href="ayurbeda.html">Ayurbeda</a></li>
+			                    <li><a href="laganDate.html">Lagan Date</a></li>
+			                    <li><a href="calender.html">Calender</a></li>
+			                    <li><a href="rasifal.html">1 year Rasifal</a></li>
+								<li><a href="qAndA.html">Q & A</a></li>
+			                    <li><a href="aboutsUs.html">Abouts Us</a></li>
+			                </ul><!--/.nav -->
+			            </div><!-- /.navbar-collapse -->
+			        </div><!--/.container-->
+			    </nav><!--/nav-->
+			    <!-- End Navigation -->
+			</div><!--/.header-area-->
+		    <div class="clearfix"></div>
+
+		</section><!-- /.top-area-->
+		<!-- top-area End -->
+
+
+		<section id="explore" class="RasiSection">
+			<div class="heading">
+				२०८१ को राशि ।
+			</div>
+			<div class="mainContainer">
+				<div class="">
+					
+					<div class="row">
+						<div class="col-md-12 col-sm-12">
+							<div class="rasifalDiv">
+								<div class="rasiDiv">
+									<div class="allDiv">
+										<div></div>
+										<div class="rasiName"> धनुराशि  </div>
+										<div class="nameWord">
+											ये. यो. भा. भी. भू. धा. फा. ढा. मे	
+										</div>
+										
+										<div class="mainImage">
+											<img src="assets/img/Sagittarius.jpg" alt="explore image">
+										</div>
+										
+									</div>
+									<p class="rasiText">
+										यो वर्ष सामान्य शुभफलदायक समय रहनेछ। तृतीय शनिको गोचरले आर्थिक लाभ, सुख र भोगविलास बढ्नेछ । पशु चौपायाबाट र धातुजन्यवस्तुको व्यवसायबाट लाभ हुनेछ । छैठौँ बृहस्पतिको गोचरले आफन्तजनमा शत्रुता बढ्नेछ । पित्त विकारले हुने रोगको भय हुनेछ । चौथो राहु र दशौँ केतु प्रतिकूल रहेकाले चोटपटकको भय रहनेछ । शोकको पीडा आइपर्ने समय छ । परीक्षा र प्रतियोगितामा सफलता मिल्नेछ । सरकारी काममा बाधा व्यवधान आउनेछन् । लगानी र सेयर कारोवारमा सावधानी अपनाउन सके यो वर्ष सुखद रहनेछ। जगल्लग्न अनुसार यो वर्ष देहसुख प्राप्त हुनेछ।
+
+वैशाख धार्मिक काममा मन जाने, धन आर्जनको योग, पारिवारिक सुखमा वृद्धि, सामाजिक क्षेत्रमा प्रभाव बढ्ने । जेठ अधूरा काम बन्ने, यात्राका कारण खर्चवृद्धि, नयाँ कामको थालनी, शरीरमा आलस्य बढ्ने। असार कार्यक्षेत्रमा सफलता, हातलाग्न नसकेको धन प्राप्त हुने, आफन्त र मित्रजनबाट सहयोग, स्थान परिवर्तनको सम्भावना । साउन अरूलाई बढी महत्त्व दिँदा तनाव बढ्ने, चोरीको भय, सन्तानको उन्नति हुने, नयाँ स्थानको यात्राको योग । भदो परोपकारका काममा मन जाने, व्यापार व्यवसायमा सफलता, अनावश्यक वादविवाद र झमेलामा पर्न सकिने, स्वास्थ्यमा प्रतिकुलता । असोज आफन्त र मित्रजनबाट सहयोग, सामाजिक प्रतिष्ठामा वृद्धि, चोटपटक र दुर्घटनाको सम्भावना ।
+कात्तिक पुराना विवाद बल्झिने, कृषि पशुपालनबाट फाइदा, घरघडेरी सम्बन्धी विवाद, खर्च बढी हुने । मंसिर शत्रुमाथि विजय, उपहार र आर्थिक लाभ, आत्मसम्मानमा वृद्धि, स्वास्थ्यमा सिथिलता । पुस वैदेशिक सफलता, पारिवारिक विवाद, सञ्चित धनमा क्षति, भ्रमण योग, विद्यार्थीका लागि प्रतिकूलता । माघ मित्रको सहयोग मिल्ने, राजनीतिक र सामाजिक क्षेत्रमा सफलता, साझेदारी व्यवसायमा भने नोक्सानी, सन्तान सुख । फागुन कार्यक्षेत्रमा चुनौती बढ्ने, आफन्त र मित्रजन टाढिने, व्यवसायमा आंशिक सफलता, अध्ययनमा सफलता । चैत्र मान हानि हुने, परिवारलाई पर्याप्त समय दिन नपाइने, शत्रु पराजित हुने, समस्या समाधान उन्मुख हुने, आर्थिक क्षेत्रमा नयाँ अवसर प्राप्त हुने ।
+									</p>		
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--footer start-->
+		<footer id="footer" class="footer">
+			<div class="container">
+			  <div class="footer-menu">
+				<div class="row">
+				  <div class="col-sm-3">
+					<div class="navbar-footer">
+						<div class="navbar-brand-footer" href="index.html"
+						  >अनेरास्ववियु नेपाल संस्कृत विश्वबिद्यालय राष्ट्रिय कमिटी</div>
+						<div class="navbar-brand-phno" href="index.html"
+						  >९८०१०९८१९० </div>
+					  </div>
+					<!--/.navbar-header-->
+				  </div>
+				  <div class="col-sm-9">
+					<ul class="footer-menu-item">
+					  <li><a href="index.html">Find Pandit</a></li>
+					  <li><a href="gallery.html">Gallery</a></li>
+					  <li><a href="laganDate.html">Lagan Date</a></li>
+					  <li><a href="calender.html">Calender</a></li>
+					  <li><a href="rasifal.html">1 year Rasifal</a></li>
+					  <li><a href="qAndA.html">Q & A</a></li>
+					  <li><a href="aboutsUs.html">Abouts Us</a></li>
+					</ul>
+					<!--/.nav -->
+				  </div>
+				</div>
+			  </div>
+			  <div class="hm-footer-copyright">
+				<div class="row">
+				  <div class="col-sm-5">
+					<p>
+					  &copy;copyright Reserved by
+					  <a href="https://www.themesine.com/">SanskritUniversity</a>
+					</p>
+					<!--/p-->
+				  </div>
+				</div>
+			  </div>
+			  <!--/.hm-footer-copyright-->
+			</div>
+			<!--/.container-->
+	  
+			<div id="scroll-Top">
+			  <div class="return-to-top">
+				<i
+				  class="fa fa-angle-up"
+				  id="scroll-top"
+				  data-toggle="tooltip"
+				  data-placement="top"
+				  title=""
+				  data-original-title="Back to Top"
+				  aria-hidden="true"
+				></i>
+			  </div>
+			</div>
+			<!--/.scroll-Top-->
+		  </footer>
+		  <!--/.footer-->
+		  <!--footer end-->
+		
+		<!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+		<script src="assets/js/jquery.js"></script>
+        
+        <!--modernizr.min.js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		
+		<!--bootstrap.min.js-->
+        <script src="assets/js/bootstrap.min.js"></script>
+		
+		<!-- bootsnav js -->
+		<script src="assets/js/bootsnav.js"></script>
+
+        <!--feather.min.js-->
+        <script  src="assets/js/feather.min.js"></script>
+
+        <!-- counter js -->
+		<script src="assets/js/jquery.counterup.min.js"></script>
+		<script src="assets/js/waypoints.min.js"></script>
+
+        <!--slick.min.js-->
+        <script src="assets/js/slick.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+		     
+        <!--Custom JS-->
+        <script src="assets/js/custom.js"></script>
+        
+    </body>
+	
+</html>

@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SanskritUniversity-Calender</title>
+
+    <!-- Google Fonts and Font Awesome -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap&subset=devanagari"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- Custom Stylesheets -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/bootsnav.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+
+    <!-- Calendar Styles -->
+    <style>
+      .mainDiv {
+        gap: 15px;
+        height: 70%;
+        display: flex;
+        justify-content: center;
+        padding-left: 80px;
+        padding-right: 80px;
+        overflow: hidden; /* Prevents any overflow outside this div */
+      }
+
+      .calendar-container {
+        max-width: 100%; /* Ensures it does not exceed the width of its parent */
+        width: 50%; /* Responsive width */
+        padding: 16px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        font-family: "Poppins", sans-serif;
+        margin: auto; /* Center align the calendar */
+        overflow: hidden; /* Prevents content from overflowing */
+        margin-top: 30px;
+      }
+
+      .calendar-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding: 8px;
+        font-size: 20px;
+        font-weight: 700;
+        color: #333;
+        text-align: center;
+        position: relative;
+        margin-bottom: 5px;
+      }
+
+      .button {
+        background-color: transparent;
+        color: #007bff;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      #prevMonth,
+      #nextMonth {
+        top: 0;
+        width: 30px; /* Fixed width for buttons */
+        height: 30px; /* Fixed height for buttons */
+      }
+
+      #prevMonth {
+        left: 10px;
+      }
+
+      #nextMonth {
+        right: 10px;
+      }
+
+      .days-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr); /* Creates a grid of 7 columns */
+        gap: 4px;
+        width: 100%;
+      }
+
+      .day-cell,
+      .empty-cell {
+        font-size: 16px;
+        color: black;
+        height: 50px; /* Uniform height */
+        background: #e0e0e0;
+        text-align: center;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+      }
+
+      .day-cell.saturday {
+        background-color: #d8472d;
+        color: #fffbfb;
+      }
+
+      .day-cell.today {
+        background-color: #ce9a01;
+        color: #ffffff;
+      }
+
+      .weekday-header {
+        background-color: #c0c0c0;
+        color: #ffffff;
+        font-weight: bold;
+      }
+
+      /* Media Query for smaller screens */
+      @media (max-width: 1350px) {
+        .mainDiv {
+          display: flex;
+          flex-direction: row;
+          gap: 30px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        .calendar-header {
+          padding: 5px;
+          font-size: 18px;
+        }
+
+        .day-cell,
+        .empty-cell {
+          font-size: 15px; /* Smaller font size for smaller screens */
+          padding: 2px;
+          height: 50px; /* Smaller cell height to fit better */
+        }
+
+        .button {
+          font-size: 16px; /* Smaller button font size */
+        }
+
+        @media (max-width: 992px) {
+          .mainDiv {
+            gap: 5px;
+            height: 130%;
+            display: flex;
+            flex-direction: column;
+            padding-left: 80px;
+            padding-right: 80px;
+            overflow: hidden; /* Prevents any overflow outside this div */
+          }
+
+          .calendar-container {
+            max-width: 100%; /* Ensures it does not exceed the width of its parent */
+            width: 100%; /* Responsive width */
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            font-family: "Poppins", sans-serif;
+            overflow: hidden; /* Prevents content from overflowing */
+            margin: 0px;
+            padding-top: 20px;
+          }
+        }
+
+        @media screen and (max-width: 640px) {
+          .mainDiv {
+            gap: 5px;
+            height: 130%;
+            display: flex;
+            flex-direction: column;
+            padding-left: 10px;
+            padding-right: 10px;
+            overflow: hidden; /* Prevents any overflow outside this div */
+          }
+        }
+
+        @media screen and (max-width: 480px) {
+          .mainDiv {
+            gap: 0px;
+            height: 880px;
+            display: flex;
+            flex-direction: column;
+            padding-left: 5px;
+            padding-right: 5px;
+            overflow: hidden; /* Prevents any overflow outside this div */
+          }
+
+          .calendar-container {
+            max-width: 100%; /* Ensures it does not exceed the width of its parent */
+            width: 100%; /* Responsive width */
+            padding: 16px;
+            background: #fff;
+            border-radius: 8px;
+            margin: auto; /* Center align the calendar */
+            overflow: hidden; /* Prevents content from overflowing */
+            margin-top: 10px;
+            margin-bottom: 0px;
+            padding-bottom: 15px;
+          }
+
+          .day-cell,
+          .empty-cell {
+            font-size: 12px;
+            color: black;
+            height: 30px; /* Uniform height */
+            background: #e0e0e0;
+            text-align: center;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+          }
+        }
+      }
+
+      .allContent {
+        padding: 5px;
+        height: 60vh;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        max-width: 100%; /* Ensures it does not exceed the width of its parent */
+        width: 50%; /* Responsive width */
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        font-family: "Poppins", sans-serif;
+        margin: auto; /* Center align the calendar */
+        margin-top: 30px;
+      }
+
+      .table-container {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        width: 100%;
+        padding: 10px;
+        height: 70vh; /* Adjust the height as needed */
+      }
+      .day {
+        font-size: 18px;
+        border-radius: 7px;
+        text-align: center;
+        color: white;
+        height: fit-content;
+        background-color: #6589b1;
+        padding: 18px 22px 18px 22px;
+      }
+
+      .event {
+        font-size: 18px;
+        border-radius: 7px;
+        text-align: center;
+        color: white;
+        width: 100%;
+        height: fit-content;
+        background-color: #bb9830;
+        padding: 18px 22px 18px 22px;
+      }
+
+      @media (max-width: 1350px) {
+        .allContent {
+          padding: 15px;
+          height: 450px;
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto;
+          max-width: 100%; /* Ensures it does not exceed the width of its parent */
+          width: 50%; /* Responsive width */
+          background: #fff;
+          border-radius: 8px;
+          box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+          font-family: "Poppins", sans-serif;
+          margin: auto; /* Center align the calendar */
+          margin-top: 30px;
+        }
+
+        .day {
+          font-size: 14px;
+          border-radius: 7px;
+          text-align: center;
+          color: white;
+          height: fit-content;
+          background-color: #6589b1;
+          padding: 16px 20px 16px 20px;
+        }
+
+        .event {
+          font-size: 14px;
+          border-radius: 7px;
+          text-align: center;
+          color: white;
+          width: 100%;
+          height: fit-content;
+          background-color: #bb9830;
+          padding: 16px 20px 16px 20px;
+        }
+      }
+
+      @media (max-width: 992px) {
+        .allContent {
+          padding: 5px;
+          height: 500px;
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto;
+          max-width: 100%; /* Ensures it does not exceed the width of its parent */
+          width: 100%; /* Responsive width */
+          background: #fff;
+          border-radius: 8px;
+          box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+          font-family: "Poppins", sans-serif;
+          margin: auto; /* Center align the calendar */
+          margin-top: 10px;
+        }
+        .day {
+          font-size: 10px;
+          border-radius: 7px;
+          text-align: center;
+          color: white;
+          height: fit-content;
+          background-color: #6589b1;
+          padding: 12px 16px 12px 16px;
+        }
+
+        .event {
+          font-size: 10px;
+          border-radius: 7px;
+          text-align: center;
+          color: white;
+          width: 100%;
+          height: fit-content;
+          background-color: #bb9830;
+          padding: 12px 16px 12px 16px;
+        }
+
+        @media screen and (max-width: 1200px) {
+          .container {
+            width: 90%;
+          }
+        }
+      }
+
+      .navbar-brand-footer {
+        font-size: 18px;
+        font-weight: 600;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .navbar-brand-phno {
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+      }
+      .navbar-brand-gmail {
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- top-area Start -->
+    <section class="top-area">
+      <div class="header-area">
+        <!-- Start Navigation -->
+        <nav
+          class="navbar navbar-default bootsnav navbar-sticky navbar-scrollspy"
+          data-minus-value-desktop="70"
+          data-minus-value-mobile="55"
+          data-speed="1000"
+        >
+          <div class="container">
+            <!-- Start Header Navigation -->
+            <div class="navbar-header">
+              <button
+                type="button"
+                class="navbar-toggle"
+                data-toggle="collapse"
+                data-target="#navbar-menu"
+              >
+                <i class="fa fa-bars"></i>
+              </button>
+              <a class="navbar-brand" href="index.html"
+                >Sanskrit<span>University</span></a
+              >
+            </div>
+            <!--/.navbar-header-->
+            <!-- End Header Navigation -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div
+              class="collapse navbar-collapse menu-ui-design"
+              id="navbar-menu"
+            >
+              <ul
+                class="nav navbar-nav navbar-right"
+                data-in="fadeInDown"
+                data-out="fadeOutUp"
+              >
+                <li><a href="index.html">Find Pandit</a></li>
+                <li><a href="ayurbeda.html">Ayurbeda</a></li>
+                <li><a href="laganDate.html">Lagan Date</a></li>
+                <li class="active"><a href="calender.html">Calender</a></li>
+                <li><a href="rasifal.html">1 year Rasifal</a></li>
+                <li><a href="qAndA.html">Q & A</a></li>
+                <li><a href="aboutsUs.html">Abouts Us</a></li>
+              </ul>
+              <!--/.nav -->
+            </div>
+            <!-- /.navbar-collapse -->
+          </div>
+          <!--/.container-->
+        </nav>
+        <!--/nav-->
+        <!-- End Navigation -->
+      </div>
+      <!--/.header-area-->
+      <div class="clearfix"></div>
+    </section>
+    <!-- /.top-area-->
+    <!-- top-area End -->
+
+    <!-- Calendar Section -->
+    <section class="mainDiv">
+      <div class="calendar-container">
+        <div class="calendar-header" id="calendarHeader">
+          <button class="button" id="prevMonth">
+            <i class="fa fa-chevron-left"></i>
+          </button>
+          <span id="monthAndYear"></span>
+          <button class="button" id="nextMonth">
+            <i class="fa fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="days-grid" id="calendarDays"></div>
+      </div>
+
+      <div class="allContent">
+        <div class="table-container">
+          <div class="day">१</div>
+          <div class="event">तिष्य १५:३४ बजेसम्म षष्ठी ५:२० बजेसम्म</div>
+        </div>
+        <div class="table-container">
+          <div class="day">२</div>
+          <div class="event">अश्लेषा १७:२६बजेसम्म सप्तमी ६:२३ बजेसम्म</div>
+        </div>
+        <div class="table-container">
+          <div class="day">३</div>
+          <div class="event">मघा १९:४१ बजेसम्म
+            अष्टमी ७:५२ बजेसम्म(सीता जयन्ती)
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">४</div>
+          <div class="event">पु.फा २२:११ बजेसम्म
+            नवमी ९:४० बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">५</div>
+          <div class="event">उ.फा. २४:४८ बजेसम्म
+            दशमी ११:४१ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">६</div>
+          <div class="event">हस्ता २७:२२ बजेसम्म
+            एकादशी १३:४२ बजेसम्म( मोहिनी एकादशी व्रत)
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">७</div>
+          <div class="event">चित्रा अहोरात्र
+            द्वादशी १५:३५ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">८</div>
+          <div class="event">चित्रा ५:४२ बजेसम्म
+            त्रयोदशी १७:१० बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">९-</div>
+          <div class="event">स्वाती ७:४१ बजेसम्म
+            चतुर्दशी १८:२० बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">१०</div>
+          <div class="event">विशाखा ५:१५ बजेसम्म
+            पूर्णिमा १९:०२ बजेसम्म(चण्डीपूर्णिमा, बुद्धजयन्ती, उभौली पर्व, यक्वा तङ्नाम)
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">११</div>
+          <div class="event"> अनुराधा १०:१९ बजेसम्म
+            ज्ये. कृ. प्रतिपदा १९:१४ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">१२</div>
+          <div class="event"> ज्येष्ठा १०:५३ बजेसम्म
+            द्वितीय १८:५५ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">१३</div>
+          <div class="event">मूल १०:५८ बजेसम्म
+            तृतीया १८:०७ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">१४-</div>
+          <div class="event">पू.आ. १०:३६ बजेसम्म
+            चतुर्थी १६:५३ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">१५</div>
+          <div class="event">उ.षा. ५:५० बजेसम्म
+            पञ्चमी १५::१६ बजेसम्म( गणतन्त्र दिवस)
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">१६</div>
+          <div class="event">श्रवण ८ः४५ बजेसम्म
+            षष्ठी १३:२० बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">१७</div>
+          <div class="event">धनिष्ठा ७:२४ बजेसम्म
+            सप्तमी ११:०९ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">१८</div>
+          <div class="event">‌ शतभिषा ५:५१ बजेसम्म
+            अष्टमी ८:४७ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">१९</div>
+          <div class="event"> उ.भा २६:३२ बजेसम्म
+            नवमी ६:२० बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">२०</div>
+          <div class="event">रेवती २४:५६ बजेसम्म
+            एकादशी २५:२८ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">२१</div>
+          <div class="event">अश्विनी २३:२८ बजेसम्म
+            द्वादशी २३:१३ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">२२</div>
+          <div class="event">भरणी २२:१४ बजेसम्म
+            त्रयोदशी २१:११ बजेसम्म२३-कृतिका २१:१७ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">२३</div>
+          <div class="event"> कृतिका २१:१७ बजेसम्म
+            चतुर्दशी १९:२६ बजेसम्म( विश्ववातावरण दिवस)
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">२४</div>
+          <div class="event">रोहिणी २०:४२ बजेसम्म
+            औंसी १८:०३ बजेसम्म(शनि जयन्ती)
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">२५</div>
+          <div class="event"> मृगशिरा २०:३३ बजेसम्म
+            ज्ये.शु.प्रतिपदा १७:०६ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">२६</div>
+          <div class="event"> आर्द्रा २०:५२ बजेसम्म
+            द्वितीय २६:३६ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">२७</div>
+          <div class="event">पुनर्वसु २१:४० बजेसम्म
+            तृतीया १६:३६ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">२८</div>
+          <div class="event">तिष्य २२:५५ बजेसम्म
+            चतुर्थी १७:०७ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">२९</div>
+          <div class="event">अश्लेषा २४:५५बजेसम्म
+            पञ्चमी १८:०८ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">३०</div>
+          <div class="event">मघा २६:५५ बजेसम्म
+            षष्ठी १९:३४ बजेसम्म
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">३१</div>
+          <div class="event">पू.फा. अहोरात्र
+            सप्तमी २१:२० बजेसम्म            
+            </div>
+        </div>
+        <div class="table-container">
+          <div class="day">३२</div>
+          <div class="event">पू.फा ५:२३ बजेसम्म
+            अष्टमी २३:१८ बजेसम्म            
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!--footer start-->
+    <footer id="footer" class="footer">
+      <div class="container">
+        <div class="footer-menu">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="navbar-footer">
+                <div class="navbar-brand-footer" href="index.html">
+                  अनेरास्ववियु नेपाल संस्कृत विश्वबिद्यालय राष्ट्रिय कमिटी
+                </div>
+                <div class="navbar-brand-phno" href="index.html">
+                  ९८०१०९८१९०
+                </div>
+              </div>
+              <!--/.navbar-header-->
+            </div>
+            <div class="col-sm-9">
+              <ul class="footer-menu-item">
+                <li><a href="index.html">Find Pandit</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="laganDate.html">Lagan Date</a></li>
+                <li><a href="calender.html">Calender</a></li>
+                <li><a href="rasifal.html">1 year Rasifal</a></li>
+                <li><a href="qAndA.html">Q & A</a></li>
+                <li><a href="aboutsUs.html">Abouts Us</a></li>
+              </ul>
+              <!--/.nav -->
+            </div>
+          </div>
+        </div>
+        <div class="hm-footer-copyright">
+          <div class="row">
+            <div class="col-sm-5">
+              <p>
+                &copy;copyright Reserved by
+                <a href="https://www.themesine.com/">SanskritUniversity</a>
+              </p>
+              <!--/p-->
+            </div>
+          </div>
+        </div>
+        <!--/.hm-footer-copyright-->
+      </div>
+      <!--/.container-->
+
+      <div id="scroll-Top">
+        <div class="return-to-top">
+          <i
+            class="fa fa-angle-up"
+            id="scroll-top"
+            data-toggle="tooltip"
+            data-placement="top"
+            title=""
+            data-original-title="Back to Top"
+            aria-hidden="true"
+          ></i>
+        </div>
+      </div>
+      <!--/.scroll-Top-->
+    </footer>
+    <!--/.footer-->
+    <!--footer end-->
+
+    <!-- Calendar Script -->
+    <script src="https://unpkg.com/nepali-date-converter"></script>
+    <script>
+      function toNepaliDigit(englishNumber) {
+        const nepaliDigits = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
+        return englishNumber
+          .toString()
+          .split("")
+          .map((e) => nepaliDigits[parseInt(e)])
+          .join("");
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const nepaliCalendarContainer = document.getElementById("calendarDays");
+        const nepaliCalendarHeader = document.getElementById("monthAndYear");
+        const prevMonthButton = document.getElementById("prevMonth");
+        const nextMonthButton = document.getElementById("nextMonth");
+
+        let today = new NepaliDate();
+        let currentYear = today.getYear();
+        let currentMonth = today.getMonth();
+
+        function renderNepaliCalendar(year, month) {
+          const fullDays = [
+            "आइतबार",
+            "सोमबार",
+            "मङ्गलबार",
+            "बुधबार",
+            "बिहीबार",
+            "शुक्रबार",
+            "शनिबार",
+          ];
+          const abbrevDays = ["आ", "सो", "म", "बु", "बि", "शु", "श"];
+          const monthNames = [
+            "बैशाख",
+            "जेष्ठ",
+            "असार",
+            "श्रावण",
+            "भदौ",
+            "अश्विन",
+            "कार्तिक",
+            "मङ्सिर",
+            "पुष",
+            "माघ",
+            "फाल्गुन",
+            "चैत्र",
+          ];
+
+          // Choose day labels based on screen width
+          const useAbbreviated = window.innerWidth < 480;
+          const days = useAbbreviated ? abbrevDays : fullDays;
+
+          nepaliCalendarHeader.textContent = `${
+            monthNames[month]
+          } ${toNepaliDigit(year)}`;
+          nepaliCalendarContainer.innerHTML = "";
+
+          days.forEach((day, index) => {
+            let dayElement = document.createElement("div");
+            dayElement.textContent = day;
+            dayElement.className =
+              "day-cell" + (index === 6 ? " saturday" : "");
+            nepaliCalendarContainer.appendChild(dayElement);
+          });
+
+          const firstDay = new NepaliDate(year, month, 1).getDay();
+          const daysInMonth = new NepaliDate(year, month + 1, 0).getDate();
+
+          for (let i = 0; i < firstDay; i++) {
+            let emptyCell = document.createElement("div");
+            emptyCell.className = "empty-cell";
+            nepaliCalendarContainer.appendChild(emptyCell);
+          }
+
+          for (let day = 1; day <= daysInMonth; day++) {
+            let dayElement = document.createElement("div");
+            dayElement.textContent = toNepaliDigit(day);
+            let isSaturday = (firstDay + day - 1) % 7 === 6;
+            dayElement.className =
+              "day-cell" +
+              (isSaturday ? " saturday" : "") +
+              (day === today.getDate() &&
+              month === today.getMonth() &&
+              year === today.getYear()
+                ? " today"
+                : "");
+            nepaliCalendarContainer.appendChild(dayElement);
+          }
+
+          // Ensure total cells count to 49 (7 rows)
+          const totalCells = nepaliCalendarContainer.childNodes.length;
+          for (let i = totalCells; i < 49; i++) {
+            let emptyCell = document.createElement("div");
+            emptyCell.className = "empty-cell";
+            nepaliCalendarContainer.appendChild(emptyCell);
+          }
+        }
+
+        renderNepaliCalendar(currentYear, currentMonth);
+
+        prevMonthButton.addEventListener("click", function () {
+          if (currentMonth === 0) {
+            currentMonth = 11;
+            currentYear--;
+          } else {
+            currentMonth--;
+          }
+          renderNepaliCalendar(currentYear, currentMonth);
+        });
+
+        nextMonthButton.addEventListener("click", function () {
+          if (currentMonth === 11) {
+            currentMonth = 0;
+            currentYear++;
+          } else {
+            currentMonth++;
+          }
+          renderNepaliCalendar(currentYear, currentMonth);
+        });
+
+        // Listen for window resize to update calendar dynamically
+        window.addEventListener("resize", function () {
+          renderNepaliCalendar(currentYear, currentMonth);
+        });
+      });
+    </script>
+
+    <!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+    <script src="assets/js/jquery.js"></script>
+
+    <!--modernizr.min.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+    <!--bootstrap.min.js-->
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- bootsnav js -->
+    <script src="assets/js/bootsnav.js"></script>
+
+    <!--feather.min.js-->
+    <script src="assets/js/feather.min.js"></script>
+
+    <!-- counter js -->
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+
+    <!--slick.min.js-->
+    <script src="assets/js/slick.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+    <!--Custom JS-->
+    <script src="assets/js/custom.js"></script>
+  </body>
+</html>
